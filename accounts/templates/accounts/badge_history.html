@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>{{ profile_user.username }}'s Badge History</h2>
+    <hr>
+
+    {% if badges %}
+        <ul class="list-group">
+            {% for badge in badges %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        {% if badge.badge_type == 'gold' %}
+                            <span class="me-2">🥇</span> Gold
+                        {% elif badge.badge_type == 'silver' %}
+                            <span class="me-2">🥈</span> Silver
+                        {% elif badge.badge_type == 'bronze' %}
+                            <span class="me-2">🥉</span> Bronze
+                        {% endif %}
+                    </div>
+                    <div class="text-end">
+                        <div>{{ badge.reason }}</div>
+                        <small class="text-muted">{{ badge.awarded_at|date:"M d, Y H:i" }}</small>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="alert alert-info">No badges earned yet.</div>
+    {% endif %}
+</div>
+{% endblock %}

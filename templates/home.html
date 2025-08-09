@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="text-center">
+    <h1>Welcome to Kenya Tech Hub</h1>
+    <p class="lead">Your community for Kenyan developer Q&A, events, and resources.</p>
+    <a href="{% url 'question_list' %}" class="btn btn-primary btn-lg m-2">Browse Questions</a>
+    <a href="{% url 'event_list' %}" class="btn btn-success btn-lg m-2">Upcoming Events</a>
+    <a href="{% url 'resource_list' %}" class="btn btn-info btn-lg m-2">Find Resources</a>
+</div>
+{% endblock %}

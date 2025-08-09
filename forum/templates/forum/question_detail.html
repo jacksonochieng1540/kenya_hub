@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <h2>{{ question.title }}</h2>
+    <p>{{ question.body }}</p>
+    <small class="text-muted">
+        Asked by <a href="{% url 'profile' question.author.username %}">{{ question.author.username }}</a>
+        on {{ question.created_at|date:"M d, Y" }}
+    </small>
+    <hr>
+
+    <h4>Answers ({{ answers.count }})</h4>
+    <ul class="list-group mb-4">
+        {% for answer in answers %}
+            <li class="list-group-item">
+                <div class="mb-2">{{ answer.body }}</div>
+                <small class="text-muted">
+                    Answered by <a href="{% url 'profile' answer.author.username %}">{{ answer.author.username }}</a>
+                    on {{ answer.created_at|date:"M d, Y" }}
+                </small>
+            </li>
+        {% empty %}
+            <li class="list-group-item text-muted">No answers yet. Be the first to answer!</li>
+        {% endfor %}
+    </ul>
+
+    {% if user.is_authenticated %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Your Answer</h5>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.body.label_tag }}
+                        {{ form.body }}
+                        {% if form.body.errors %}
+                            <div class="text-danger">{{ form.body.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit Answer</button>
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            <a href="{% url 'login' %}?next={{ request.path }}" class="alert-link">Login</a> to post an answer.
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

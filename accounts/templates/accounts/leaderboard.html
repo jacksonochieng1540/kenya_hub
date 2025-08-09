@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Top Kenyan Developers</h2>
+<p class="text-muted">Ranking based on reputation points</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Username</th>
+            <th>Reputation</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in top_users %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>
+                <a href="{% url 'profile' user.username %}">{{ user.username }}</a>
+            </td>
+            <td>
+                {{ user.reputation }}
+                {% if user.get_badge == "gold" %}
+                    🥇
+                {% elif user.get_badge == "silver" %}
+                    🥈
+                {% elif user.get_badge == "bronze" %}
+                    🥉
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

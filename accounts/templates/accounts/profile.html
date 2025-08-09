@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card mb-3">
+    <div class="card-body">
+        <h3 class="card-title">
+            {{ profile_user.username }}
+            {% if profile_user.get_badge == "gold" %}
+                🥇 <span class="badge bg-warning text-dark">Gold</span>
+            {% elif profile_user.get_badge == "silver" %}
+                🥈 <span class="badge bg-secondary">Silver</span>
+            {% elif profile_user.get_badge == "bronze" %}
+                🥉 <span class="badge bg-brown" style="background-color:#cd7f32;">Bronze</span>
+            {% endif %}
+            <a href="{% url 'badge_history' profile_user.username %}" class="btn btn-outline-primary btn-sm mt-2">
+                View Badge History
+            </a>
+        </h3>
+
+        <p class="card-text">{{ profile_user.bio|default:"No bio yet." }}</p>
+        <p><strong>Location:</strong> {{ profile_user.location|default:"Not specified" }}</p>
+        <p><strong>Reputation:</strong> {{ profile_user.reputation }} pts</p>
+        
+        {% if profile_user.github_link %}
+            <p><strong>GitHub:</strong> <a href="{{ profile_user.github_link }}" target="_blank">{{ profile_user.github_link }}</a></p>
+        {% endif %}
+        
+        {% if profile_user.linkedin_link %}
+            <p><strong>LinkedIn:</strong> <a href="{{ profile_user.linkedin_link }}" target="_blank">{{ profile_user.linkedin_link }}</a></p>
+        {% endif %}
+    </div>
+</div>
+
+{% if user == profile_user %}
+    <a href="{% url 'edit_profile' %}" class="btn btn-warning">Edit Profile</a>
+{% endif %}
+
+{% endblock %}

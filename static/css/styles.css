@@ -1,0 +1,62 @@
+/* ===== General Styling ===== */
+body {
+    background-color: #f8f9fa;
+}
+
+/* ===== Navbar ===== */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.navbar .btn {
+    margin-right: 5px;
+}
+
+/* ===== Page Headers ===== */
+h1, h2, h3 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* ===== Buttons ===== */
+.btn-primary, .btn-success {
+    border-radius: 20px;
+}
+
+/* ===== Forms ===== */
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* ===== Lists ===== */
+.list-group-item a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.list-group-item a:hover {
+    text-decoration: underline;
+}
+/* ===== Dark Mode ===== */
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+body.dark-mode a {
+    color: #90caf9;
+}
+
+body.dark-mode .card,
+body.dark-mode .list-group-item,
+body.dark-mode form {
+    background-color: #1e1e1e;
+    border-color: #333;
+}
+.badge-bronze {
+    background-color: #cd7f32;
+    color: white;
+}
